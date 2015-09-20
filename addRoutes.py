@@ -15,7 +15,7 @@ def addRoutesToMegaTable():
   cursor = conn.cursor()
 
   cursor.execute("DROP TABLE IF EXISTS cstdm_schema.route_orders;")
-  cursor.execute("CREATE TABLE cstdm_schema.route_orders (route_order integer[] );")
+  cursor.execute("CREATE TABLE cstdm_schema.route_orders (id serial, i integer, j integer, route_order integer[] );")
   conn.commit()
   
   for i in range(1, 1455):
@@ -43,7 +43,7 @@ def addRoutesToMegaTable():
       # retrieve the records from the database
       records = cursor.fetchall()
       
-      listOfTuples.append( records[0] )
+      listOfTuples.append( (i, j, records[0]) )
       #print(records)
       
     
@@ -52,7 +52,7 @@ def addRoutesToMegaTable():
     #print(pprint.pprint(listOfTuples))
     #print(listOfTuples)
     args_str = ','.join(['%s' for t in listOfTuples])
-    insert_query = 'INSERT INTO cstdm_schema.route_orders VALUES {0}'.format(args_str)
+    insert_query = 'INSERT INTO cstdm_schema.route_orders(i, j, route_order)  VALUES {0}'.format(args_str)
     modifiedQuery = cursor.mogrify(insert_query, listOfTuples)
     cursor.execute(modifiedQuery)
     print(str(i) + "ith insert done")
