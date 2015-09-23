@@ -1,0 +1,107 @@
+<html style="font-size: 12px">
+  <head>
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawGeoChart);
+      google.setOnLoadCallback(drawEcoChart);
+      google.setOnLoadCallback(draw5050Chart);
+      
+      function drawGeoChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['GL', 'Percentages'],
+          ['San Francisco', 0.06],
+          ['San Mateo', 0.11],
+          ['Santa Clara', 0.25],
+          ['Alameda', 0.23],
+          ['Contra Costa', 0.16],
+          ['Solano', 0.05],
+          ['Napa', 0.02],
+          ['Sonoma', 0.07],
+          ['Marin', 0.04]
+         
+        ]);
+
+        var options = {
+        
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('geoChart'));
+
+        chart.draw(data, options);
+      }
+      
+      function drawEcoChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['GL', 'Percentages'],
+          ['San Francisco', 0.07],
+          ['San Mateo', 0.11],
+          ['Santa Clara', 0.26],
+          ['Alameda', 0.22],
+          ['Contra Costa', 0.15],
+          ['Solano', 0.05],
+          ['Napa', 0.02],
+          ['Sonoma', 0.07],
+          ['Marin', 0.04]
+         
+        ]);
+
+
+        var options = {
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('ecoChart'));
+
+        chart.draw(data, options);
+      }
+      
+      function draw5050Chart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['GL', 'Percentages'],
+          ['San Francisco', 0.07],
+          ['San Mateo', 0.11],
+          ['Santa Clara', 0.25],
+          ['Alameda', 0.22],
+          ['Contra Costa', 0.15],
+          ['Solano', 0.06],
+          ['Napa', 0.02],
+          ['Sonoma', 0.07],
+          ['Marin', 0.04]
+         
+        ]);
+
+        var options = {
+          
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('fiftyfiftyChart'));
+
+        chart.draw(data, options);
+      }
+      
+
+      
+      
+    </script>
+  </head>
+  <body class="container">
+    <h3 class="center-align">Results of Various Methods</h3 >
+    <h5 class="center-align">Geographic Method Output</h5>
+    <div class="col s6" id="geoChart" style="width: 900px; height: 500px;"></div>
+    <hr />
+    <h5 class="center-align">Ecological Footprint Method Output</h5>
+    <div class="col s6" id="ecoChart" style="width: 900px; height: 500px;"></div>
+    <hr />
+    <h5 class="center-align">50-50 Method</h5>
+    <div class="col s12" id="fiftyfiftyChart" style="width: 900px; height: 500px; margin-top: 0; padding-top: 0;"></div>
+    
+  </body>
+</html>
