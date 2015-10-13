@@ -14,7 +14,7 @@ def generateEcologicalFootprint():
   # conn.cursor will return a cursor object, you can use this cursor to perform queries
   cursor = conn.cursor(name='super_cursor', withhold=True)
 
-  cursor.execute("SELECT * FROM cstdm_schema.intermediate_ecological");
+  cursor.execute("SELECT * FROM cstdm_schema.joint_intermediate_ecological");
 
   # row[0] - person_id
   # row[1] - tour_id
@@ -47,7 +47,7 @@ def generateEcologicalFootprint():
         last_trip = max(myDict, key=int)
         dest_taz = myDict[last_trip]
         insertQuery = r"""
-        INSERT INTO cstdm_schema.ecological_footprint
+        INSERT INTO cstdm_schema.joint_ecological_footprint
         VALUES 
         """ + "(" + str(row[0]) + "," + str(row[1]) + ",'" + row[2] + "'," + str(dest_taz) + "," + str(sum(row[4])) + ");"
         cursor2.execute(insertQuery)
@@ -64,7 +64,7 @@ def generateEcologicalFootprint():
         #print(type(str(sum(row[4]))))
         #print('Allocating to ', dest_taz)    
         insertQuery = r"""
-        INSERT INTO cstdm_schema.ecological_footprint
+        INSERT INTO cstdm_schema.joint_ecological_footprint
         VALUES 
         """ + "(" + str(row[0]) + "," + str(row[1]) + ",'" + row[2] + "'," + dest_taz + "," + str(sum(row[4])) + ");"
         
@@ -81,7 +81,7 @@ def generateEcologicalFootprint():
           
         for i in range(2):
           insertQuery = r"""
-          INSERT INTO cstdm_schema.ecological_footprint
+          INSERT INTO cstdm_schema.joint_ecological_footprint
           VALUES 
           """ + "(" + str(row[0]) + "," + str(row[1]) + ",'" + row[2] + "'," + dest_taz_list[i] + "," + str(row[4][i]) + ");"
           if cursor2.closed:

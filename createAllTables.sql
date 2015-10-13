@@ -168,3 +168,30 @@ CREATE TABLE cstdm_schema.individualtours
 );
 
 \copy cstdm_schema.individualtours FROM 'D:\MTC_BASE\input\indivTourData_4.csv' DELIMITER ',' CSV HEADER;
+
+DROP TABLE IF EXISTS cstdm_schema.jointTrips;
+
+CREATE TABLE cstdm_schema.jointTrips
+(
+  hh_id bigint,
+  tour_id integer,
+  stop_id integer,
+  inbound integer,
+  tour_purpose character varying(32),
+  orig_purpose character varying(32),
+  dest_purpose character varying(32),
+  orig_taz integer,
+  orig_walk_segment smallint,
+  dest_taz integer,
+  dest_walk_segment integer,
+  parking_taz integer,
+  depart_hour integer,
+  trip_mode integer,
+  num_participants integer,
+  tour_mode integer,
+  tour_category character varying(32)
+);
+
+\copy cstdm_schema.jointTrips FROM 'D:\MTC_BASE\input\jointTripData_4.csv' DELIMITER ',' CSV HEADER;
+
+
